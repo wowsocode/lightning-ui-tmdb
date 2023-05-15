@@ -5,6 +5,7 @@ import NotFound from './pages/NotFound';
 import browseProvider from './api/providers/browse';
 import movieProvider from './api/providers/movie';
 import tvProvider from './api/providers/tv';
+import peopleProvider from './api/providers/people';
 import { Router } from '@lightningjs/sdk';
 
 export default {
@@ -31,6 +32,11 @@ export default {
       path: 'tv/:tvId',
       component: Entity,
       before: tvProvider,
+    },
+    {
+      path: 'people/:personId',
+      component: Entity,
+      before: peopleProvider,
     },
     {
       path: '*',

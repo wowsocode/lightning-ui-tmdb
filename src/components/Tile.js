@@ -5,6 +5,14 @@ export default class Tile extends lng.Component {
     return {
       Item: {
         Image: {},
+        Title: {
+          alpha: 0,
+          x: 0,
+          y: 318,
+          zIndex: 10,
+          mountY: 0.5,
+          text: { text: '' },
+        },
       },
       FocusRing: {
         alpha: 0,
@@ -34,12 +42,18 @@ export default class Tile extends lng.Component {
     return this.tag('FocusRing');
   }
 
+  get _Title() {
+    return this.tag('Item.Title');
+  }
+
   _focus() {
     this._FocusRing.smooth = { alpha: 1 };
+    this._Title.smooth = { alpha: 1 };
   }
 
   _unfocus() {
     this._FocusRing.smooth = { alpha: 0 };
+    this._Title.smooth = { alpha: 0 };
   }
 
   _firstEnable() {
@@ -70,6 +84,13 @@ export default class Tile extends lng.Component {
         type: lng.textures.ImageTexture,
         src: this._src,
         resizeMode: { type: 'cover', w: this.w, h: this.h },
+      },
+    });
+
+    this._Title.patch({
+      text: {
+        text: this.title,
+        fontSize: 20,
       },
     });
   }

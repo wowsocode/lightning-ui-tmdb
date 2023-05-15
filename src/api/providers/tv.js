@@ -10,6 +10,6 @@ export default function (page, { tvId }) {
   });
   return api.get('/tv/' + tvId).then((data) => {
     page.tag('Backdrop').src = getImageUrl(data.backdrop_path, 'original');
-    page.entityInfo = data;
+    page.entityInfo = { ...data, entityType: 'tv' };
   });
 }

@@ -11,6 +11,6 @@ export default function (page, { movieId }) {
   });
   return api.get('/movie/' + movieId).then((data) => {
     page.tag('Backdrop').src = getImageUrl(data.backdrop_path, 'original');
-    page.entityInfo = data;
+    page.entityInfo = { ...data, entityType: 'movie' };
   });
 }
